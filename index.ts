@@ -10,6 +10,24 @@ const result1 = Papa.parse(csv1,{
 })
 console.info('■ CRLFの場合')
 console.info(result1)
+/*
+■ CRLFの場合 => OK
+{
+	data: [
+		[ 'value1-1', 'value1-2' ],
+		[ 'value2-1', 'value2-2' ],
+		[ 'value3-1', 'value3-2' ]
+	],
+	errors: [],
+	meta: {
+		delimiter: ',',
+		linebreak: '\r\n',
+		aborted: false,
+		truncated: false,
+		cursor: 57
+	}
+}
+*/
 
 // LF
 let csv2 = "value1-1,value1-2\n" 
@@ -21,6 +39,25 @@ const result2 = Papa.parse(csv2,{
 })
 console.info('■ LFの場合')
 console.info(result2)
+/*
+■ LFの場合 => OK
+{
+	data: [
+		[ 'value1-1', 'value1-2' ],
+		[ 'value2-1', 'value2-2' ],
+		[ 'value3-1', 'value3-2' ]
+	],
+	errors: [],
+	meta: {
+		delimiter: ',',
+		linebreak: '\n',
+		aborted: false,
+		truncated: false,
+		cursor: 54
+	}
+}
+
+*/
 
 
 // CRLF & LF
@@ -34,9 +71,9 @@ const result3 = Papa.parse(csv3,{
 console.info('■ CRLFとLFが混在する場合')
 console.info(result3)
 
-//このパターンは多い方に寄せられるので、弾かないとパース結果の2レコード目の最後尾の項目の値に\rが含まれてしまう
 /*
 ■ CRLFとLFが混在する場合
+=> このパターンは多い方に寄せられるので、弾かないとパース結果の2レコード目の最後尾の項目の値に\rが含まれてしまう
 {
 	data: [
 		[ 'value1-1', 'value1-2' ],
